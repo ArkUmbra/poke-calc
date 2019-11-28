@@ -1,9 +1,12 @@
 version: 2
+
 jobs:
   build:
     docker:
       - image: circleci/golang:1.12
     steps:
       - checkout
-      - run: echo "A first hello"
-      - run: sh build.sh
+      - run: go build -o out/pkcalc
+      - store_artifacts:
+           path: /out/pkcalc.go
+
