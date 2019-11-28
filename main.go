@@ -61,7 +61,13 @@ func writeFileToHtml(writer http.ResponseWriter, filename string) {
 func startServer() {
 	http.HandleFunc("/", homePage)
 
-	error := http.ListenAndServe(":9901", nil)
+	port := "8080"
+	setPort := os.Getenv("PORT")
+	if setPort != "" {
+		port = setPort
+	}
+
+	error := http.ListenAndServe(":" + port, nil)
 	fmt.Println(error)
 }
 
