@@ -2,41 +2,16 @@ package main
 
 import (
 	"fmt"
+	rice "github.com/GeertJohan/go.rice"
 	"html/template"
 	"io/ioutil"
 	"net/http"
 	"os"
 )
 
-const AddForm = `
-<form method="POST" action="/add">
-URL: <input type="text" name="url">
-<input type="submit" value="Add">
-</form>
-`
 
 func homePage(writer http.ResponseWriter, r *http.Request) {
-	writeFileToHtml(writer, "html/index.html")
-	////fmt.Fprintf(writer, "Hello home page")
-	//
-	//html, err := ioutil.ReadFile("html/index.html")
-	//if err != nil {
-	//	panic(err)
-	//}
-	//
-	//t := template.New("table")
-	//
-	////t, err := t.Parse(AddForm)
-	//t, err2 := t.Parse(string(html))
-	//if err2 != nil {
-	//	panic(err)
-	//}
-	//
-	//writer.Header().Set("Content-Type", "text/html; charset=utf-8")
-	////fmt.Fprint(w, AddForm)
-	//
-	//t.Execute(os.Stdout,nil)
-	//t.Execute(writer, nil)
+	writeFileToHtml(writer, "web/html/index.html")
 }
 
 func writeFileToHtml(writer http.ResponseWriter, filename string) {
@@ -59,6 +34,11 @@ func writeFileToHtml(writer http.ResponseWriter, filename string) {
 }
 
 func startServer() {
+	box := rice.MustFindBox("web")
+	cssFileServer := http.StripPrefix("/web/", http.FileServer(box.HTTPBox()))
+	http.Handle("/web/", cssFileServer)
+
+
 	http.HandleFunc("/", homePage)
 
 	port := "8080"
