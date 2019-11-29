@@ -34,7 +34,7 @@ func writeFileToHtml(writer http.ResponseWriter, filename string) {
 }
 
 func startServer() {
-	box := rice.MustFindBox("web")
+	//box := rice.MustFindBox("web")
 	cssFileServer := http.StripPrefix("/web/", http.FileServer(box.HTTPBox()))
 	http.Handle("/web/", cssFileServer)
 
