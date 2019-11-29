@@ -6,7 +6,7 @@ jobs:
       - image: circleci/golang:1.12
     steps:
       - checkout
-      - run: ls -l && go build -o out/pkcalc && ls -l && ls -l out
+      - run: sh build.sh
       - store_artifacts:
            path: out/pkcalc
 
