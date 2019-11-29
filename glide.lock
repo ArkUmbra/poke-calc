@@ -1,0 +1,10 @@
+hash: 2fa2395b07bf6a7e6850b59b15aca0a1c9416d6173cb39c5806e825ba2bb28ee
+updated: 2019-11-29T09:54:18.904606+09:00
+imports:
+- name: github.com/daaku/go.zipexe
+  version: 74d766ac1dde7458348221869a7d1e7e5fa0597e
+- name: github.com/GeertJohan/go.rice
+  version: d954009f7238df62c766980934c8ea7f161d0e59
+  subpackages:
+  - embedded
+testImports: []
