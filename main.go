@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	rice "github.com/GeertJohan/go.rice"
 	"html/template"
 	"io/ioutil"
 	"net/http"
@@ -35,7 +34,8 @@ func writeFileToHtml(writer http.ResponseWriter, filename string) {
 
 func startServer() {
 	//box := rice.MustFindBox("web")
-	cssFileServer := http.StripPrefix("/web/", http.FileServer(box.HTTPBox()))
+	//cssFileServer := http.StripPrefix("/web/", http.FileServer(box.HTTPBox()))
+	cssFileServer := http.StripPrefix("/web/", http.FileServer(http.Dir("web/")))
 	http.Handle("/web/", cssFileServer)
 
 
